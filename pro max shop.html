@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>My Shop PRO MAX</title>
+<!-- Favicon -->
+  <link rel="icon" type="image/png" href="Gemini_Generated_Image_gj1ns0gj1ns0gj1n.png">
+<style>
+body {font-family: Arial; margin:0; background:#f2f2f2;}
+header {background:black;color:white;padding:15px;text-align:center;}
+
+.products {
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.product {
+background:white;
+padding:15px;
+border-radius:10px;
+text-align:center;
+}
+
+.product img {width:100%;border-radius:10px;}
+
+select, input {
+width:100%;
+padding:6px;
+margin-top:5px;
+}
+
+button {
+padding:8px;
+margin-top:5px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.add {background:green;color:white;}
+.remove {background:red;color:white;}
+.cart-box {
+  position:fixed;
+  top:10px;
+  left:9%;
+  transform:translateX(-50%);
+  background:white;
+  padding:10px;
+  border-radius:10px;
+  width:200px;
+  max-height:70vh;
+  overflow:auto;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+  font-size:14px;
+  cursor:grab;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(to right, #001f4d, #000000);
+}
+</style>
+
+</style>
+</head>
+
+<body>
+<header>
+<h1>🛒 PRO MAX Shop </h1>
+<a href="https://www.instagram.com/nou3man_______10/?hl=en" target="_blank">
+  <button class="insta-btn">Instagram</button>
+</a>
+<a href="https://www.facebook.com/yourpage" target="_blank">
+  <button class="fb-btn">Facebook</button>
+</a>
+</header>
+
+<div class="cart-box">
+<h3>🛍️ Panier</h3>
+<ul id="cart-list"></ul>
+<p><b>Total: <span id="total">0</span> DH</b></p>
+
+<input id="name" placeholder="name/nom">
+<input id="phone" placeholder="number phone/numero de telephone">
+
+<button onclick="sendOrder()" >📲 order</button>
+</div>
+
+<div class="products">
+
+<!-- PRODUCT 1 -->
+<div class="product">
+<img src="https://sa.hm.com/en/media_1684ba51e5b8bf7f45215fac961c3a1fda6a94ac8.jpg?width=1200&format=pjpg&optimize=medium">
+<h3>T-shirt</h3>
+<p>100 DH</p>
+
+<select id="size1">
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+</select>
+
+<select id="color1">
+<option>Noir</option>
+<option>Blanc</option>
+<option>Rouge</option>
+</select>
+
+<input type="number" id="qty1" value="1" min="1">
+
+<button class="add" onclick="addToCart('T-shirt',100,'size1','color1','qty1')">Add</button>
+</div>
+
+<!-- PRODUCT 2 -->
+<div class="product">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUPP86QmeNTu3P3x38DbMW9K8mqk8Ij515VQ&s">
+<h3>Shoes</h3>
+<p>300 DH</p>
+
+<select id="size2">
+<option>40</option>
+<option>41</option>
+<option>42</option>
+<option>43</option>
+</select>
+
+<select id="color2">
+<option>Black</option>
+<option>White</option>
+</select>
+
+<input type="number" id="qty2" value="1" min="1">
+
+<button class="add" onclick="addToCart('Shoes',300,'size2','color2','qty2')">Add</button>
+</div>
+
+<!-- PRODUCT 3 -->
+<div class="product">
+<img src="https://m.media-amazon.com/images/I/41rOk2Sq1AL._AC_UY1000_.jpg">
+<h3>Cap</h3>
+<p>80 DH</p>
+
+<select id="size3">
+<option>Standard</option>
+</select>
+
+<select id="color3">
+<option>Black</option>
+<option>Blue</option>
+</select>
+
+<input type="number" id="qty3" value="1" min="1">
+
+<button class="add" onclick="addToCart('Cap',80,'size3','color3','qty3')">Add</button>
+</div>
+
+<!-- PRODUCT 4 -->
+<div class="product">
+  <img src="https://www.cdiscount.com/pdt2/9/4/8/5/300x300/mp90141948/rw/survetement-homme-2-pieces-ensemble-casual-sport-s.jpg">
+  <h3>Tracksuit</h3>
+  <p>250 DH</p>
+
+  <select id="size4">
+    <option>S</option>
+    <option>M</option>
+    <option>L</option>
+    <option>XL</option>
+  </select>
+
+  <select id="color4">
+    <option>Noir</option>
+    <option>Bleu</option>
+    <option>Gris</option>
+    <option>Blanc</option>
+    <option>Rouge</option>
+    <option>Jaune</option>
+  </select>
+
+  <input type="number" id="qty4" value="1" min="1">
+
+  <button class="add" onclick="addToCart('Jacket',250,'size4','color4','qty4')">Add</button>
+</div>
+
+<!-- PRODUCT 5: Socks -->
+<div class="product">
+  <img src="https://assets.adidas.com/images/w_1880,f_auto,q_auto/58ffc67d2267491e8184aefc00f83579_9366/IC1283_01_04_standard.jpg">
+  <h3>Socks</h3>
+  <p>50 DH</p>
+
+  <select id="size4">
+    <option>S</option>
+    <option>M</option>
+    <option>L</option>
+  </select>
+
+  <select id="color4">
+    <option>Noir</option>
+    <option>Blanc</option>
+    <option>Gris</option>
+  </select>
+
+  <input type="number" id="qty4" value="1" min="1">
+
+  <button class="add" onclick="addToCart('Socks',50,'size4','color4','qty4')">Add</button>
+</div>
+
+<!-- PRODUCT 6: Bags -->
+<div class="product">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTOulxYCVdvOR72iw9EVMuhDkvYUarybmQg&s">
+  <h3>Bags</h3>
+  <p>150 DH</p>
+
+  <select id="size5">
+    <option>Small</option>
+    <option>Medium</option>
+    <option>Large</option>
+  </select>
+
+  <select id="color5">
+    <option>Noir</option>
+  </select>
+
+  <input type="number" id="qty5" value="1" min="1">
+
+  <button class="add" onclick="addToCart('Bags',150,'size5','color5','qty5')">Add</button>
+</div>
+
+<!-- PRODUCT 7: Watch -->
+<div class="product">
+  <img src="https://media.beaverbrooks.co.uk/i/beaverbrooks/og-watches">
+  <h3>Watch</h3>
+  <p>200 DH</p>
+
+  <select id="size6">
+    <option>One Size</option>
+  </select>
+
+  <select id="color6">
+    <option>Noir</option>
+    <option>Argent</option>
+  </select>
+
+  <input type="number" id="qty6" value="1" min="1">
+
+  <button class="add" onclick="addToCart('Watch',200,'size6','color6','qty6')">Add</button>
+</div>
+
+<!-- PRODUCT 8: Gloves -->
+<div class="product">
+  <img src="https://i.ebayimg.com/images/g/osYAAOSwZ6ZiIhyy/s-l400.jpg">
+  <h3>Gloves</h3>
+  <p>120 DH</p>
+
+  <select id="size7">
+    <option>S</option>
+    <option>M</option>
+    <option>L</option>
+  </select>
+
+  <select id="color7">
+    <option>Noir</option>
+    <option>Marron</option>
+  </select>
+
+  <input type="number" id="qty7" value="1" min="1">
+
+  <button class="add" onclick="addToCart('Gloves',120,'size7','color7','qty7')">Add</button>
+</div>
+
+<!-- PRODUCT 9: Backpack -->
+<div class="product">
+  <img src="https://www.shutterstock.com/image-vector/black-red-blue-blank-school-260nw-2056354061.jpg">
+  <h3>Backpack</h3>
+  <p>180 DH</p>
+
+  <select id="size8">
+    <option>Small</option>
+    <option>Medium</option>
+    <option>Large</option>
+  </select>
+
+  <select id="color8">
+    <option>Noir</option>
+    <option>Rouge</option>
+    <option>Bleu</option>
+  </select>
+
+  <input type="number" id="qty8" value="1" min="1">
+
+  <button class="add" onclick="addToCart('Backpack',180,'size8','color8','qty8')">Add</button>
+</div>
+
+<!-- PRODUCT 10: Belt -->
+<div class="product">
+  <img src="https://azbelt.com/cdn/shop/products/DSC07205_cut_938x.jpg?v=1613938576">
+  <h3>Belt</h3>
+  <p>45 DH</p>
+
+  <select id="size9">
+    <option>S</option>
+    <option>M</option>
+    <option>L</option>
+  </select>
+
+  <select id="color9">
+    <option>Noir</option>
+    <option>Brun</option>
+    <option>Gris</option>
+  </select>
+
+  <input type="number" id="qty9" value="1" min="1">
+
+  <button class="add" onclick="addToCart('Belt',90,'size9','color9','qty9')">Add</button>
+</div>
+<!-- PRODUCT 11 -->
+<div class="product">
+<img src="https://hourscollection.com/cdn/shop/files/DropShoulderHoodie-Grey-productphoto_1.png?v=1762197948&width=2048">
+
+<h3>Hoodie</h3>
+<p>200 DH</p>
+
+<select id="size1">
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+</select>
+
+<select id="color1">
+<option>Black</option>
+<option>White</option>
+<option>Grey</option>
+</select>
+
+<input type="number" id="qty1" value="1" min="1">
+
+<button class="add"
+onclick="addToCart('Hoodie',220,'size1','color1','qty1')">
+Add
+</button>
+</div>
+
+<!-- PRODUCT 12 -->
+<div class="product">
+<img src="https://m.media-amazon.com/images/I/71qRtkJFrEL._AC_UY1000_.jpg">
+
+<h3>Jeans</h3>
+<p>170 DH</p>
+
+<select id="size2">
+<option>38</option>
+<option>40</option>
+<option>42</option>
+<option>44</option>
+</select>
+
+<select id="color2">
+<option>Blue</option>
+<option>Black</option>
+</select>
+
+<input type="number" id="qty2" value="1" min="1">
+
+<button class="add"
+onclick="addToCart('Jeans',190,'size2','color2','qty2')">
+Add
+</button>
+</div>
+
+<!-- PRODUCT 13 -->
+<div class="product">
+<img src="https://digimart.ma/wp-content/uploads/2024/09/shutterstock_1786204913.jpg.webp">
+
+<h3>Phone Case</h3>
+<p>30 DH</p>
+
+<select id="size3">
+<option>iPhone</option>
+<option>Samsung</option>
+</select>
+
+<select id="color3">
+<option>Black</option>
+<option>Transparent</option>
+</select>
+
+<input type="number" id="qty3" value="1" min="1">
+
+<button class="add"
+onclick="addToCart('Phone Case',70,'size3','color3','qty3')">
+Add
+</button>
+</div>
+
+<!-- PRODUCT 14 -->
+<div class="product">
+<img src="https://www.icelanticskis.com/cdn/shop/files/Knit-Beanies-Hanna-Updated-Crop_0012_KnitBeanieBlackprecut-1_700x700.jpg?v=1697767096">
+
+<h3>Beanie</h3>
+<p>60 DH</p>
+
+<select id="size4">
+<option>Standard</option>
+</select>
+
+<select id="color4">
+<option>Black</option>
+<option>Grey</option>
+<option>White</option>
+</select>
+
+<input type="number" id="qty4" value="1" min="1">
+
+<button class="add"
+onclick="addToCart('Beanie',60,'size4','color4','qty4')">
+Add
+</button>
+</div>
+<!-- PRODUCT 15 -->
+<div class="product">
+<img src="https://secretsales-product-images.s3.eu-west-1.amazonaws.com/2025-03-04/343483.jpg">
+
+<h3>Sunglasses</h3>
+<p>80 DH</p>
+
+<select id="size5">
+<option>Standard</option>
+</select>
+
+<select id="color5">
+<option>Black</option>
+<option>Gold</option>
+<option>Silver</option>
+</select>
+
+<input type="number" id="qty5" value="1" min="1">
+
+<button class="add"
+onclick="addToCart('Sunglasses',120,'size5','color5','qty5')">
+Add
+</button>
+</div>
+</div>
+
+<script>
+let cart = [];
+
+function addToCart(name, price, sizeId, colorId, qtyId){
+  let size = document.getElementById(sizeId).value;
+  let color = document.getElementById(colorId).value;
+  let qty = parseInt(document.getElementById(qtyId).value);
+
+  cart.push({name, price, size, color, qty});
+  renderCart();
+}
+
+function removeItem(i){
+  cart.splice(i,1);
+  renderCart();
+}
+
+function renderCart(){
+  let list = document.getElementById("cart-list");
+  list.innerHTML="";
+  let total=0;
+
+  cart.forEach((item,i)=>{
+    let sub = item.price * item.qty;
+    total += sub;
+
+    list.innerHTML += `
+    <li>
+    ${item.name} (${item.size}, ${item.color}) x${item.qty} = ${sub} DH
+    <button class="remove" onclick="removeItem(${i})">X</button>
+    </li>`;
+  });
+
+  document.getElementById("total").innerText = total;
+}
+
+function sendOrder(){
+  let name = document.getElementById("name").value.trim();
+  let phoneUser = document.getElementById("phone").value.trim();
+
+  // 🛑 check panier
+  if(cart.length == 0){
+    alert("❌ Cart empty");
+    return;
+  }
+
+  // 🛑 check name + phone
+  if(name === "" || phoneUser === ""){
+    alert("❌ Please fill in your name and phone number before placing the order");
+    return;
+  }
+
+  let msg="طلب جديد:\n";
+  msg+="الاسم: "+name+"\n";
+  msg+="الهاتف: "+phoneUser+"\n\n";
+
+  cart.forEach(i=>{
+    msg+=`- ${i.name} (${i.size}, ${i.color}) x${i.qty} = ${i.price*i.qty} DH\n`;
+  });
+
+  let myPhone="212XXXXXXXXX";
+  window.open("https://wa.me/"+myPhone+"?text="+encodeURIComponent(msg));
+}
+let cartBox = document.querySelector(".cart-box");
+
+let isDown = false;
+let offsetX, offsetY;
+
+cartBox.addEventListener("mousedown", (e) => {
+  isDown = true;
+  offsetX = e.clientX - cartBox.offsetLeft;
+  offsetY = e.clientY - cartBox.offsetTop;
+  cartBox.style.cursor = "grabbing";
+});
+
+document.addEventListener("mouseup", () => {
+  isDown = false;
+  cartBox.style.cursor = "grab";
+});
+
+function sendOrder() {
+  window.location.href = "https://checkout.stripe.com/pay/your-link";
+}
+
+// 🛒 show items
+let list = document.getElementById("cart-items");
+let total = 0;
+
+cart.forEach(item => {
+  let li = document.createElement("li");
+  li.textContent = item.name + " - " + item.price + " DH";
+  list.appendChild(li);
+  total += item.price;
+});
+
+document.getElementById("total").textContent = total;
+
+// 💳 pay function (Stripe link example)
+function pay() {
+  // هنا دير Stripe payment link ديالك
+  window.location.href = "https://buy.stripe.com/YOUR_LINK";
+}
+
+</script>
+
+</body>
+</html>
